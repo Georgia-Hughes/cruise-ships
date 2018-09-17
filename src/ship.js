@@ -6,7 +6,7 @@ function Ship(name) {
 
 Ship.prototype = {
   get canSail() {
-    if (this.sail === true) {
+    if (this.startingPort === 'Liverpool') {
       return true;
     }
     return false;
