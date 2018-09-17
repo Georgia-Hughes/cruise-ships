@@ -20,7 +20,9 @@ describe('Ship has starting point', () => {
 
 describe('Ship should be able to set sail from a port', () => {
   it('can leave the current port', () => {
-    ship.setSail();
-    expect(ship.sail).toBeTruthy();
+    // ship.startingPort = 'Manchester'; Leaving this comment to remind me this will fail!
+    ship.startingPort = 'Liverpool';
+    ship.startPort();
+    expect(ship.startingPort).toBeTruthy();
   });
 });

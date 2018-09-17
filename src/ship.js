@@ -1,7 +1,6 @@
 function Ship(name) {
   this.name = name;
   this.startingPort = 'Liverpool';
-  this.sail = true;
 }
 
 Ship.prototype = {
@@ -13,11 +12,11 @@ Ship.prototype = {
   },
 };
 
-Ship.prototype.setSail = function setSail() {
+Ship.prototype.startPort = function startPort() {
   if (!this.canSail) {
     throw new Error('Your ship cannot leave port!');
   } else {
-    this.sail = true;
+    this.startingPort = 'Liverpool';
   }
 };
 
