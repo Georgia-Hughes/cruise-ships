@@ -1,4 +1,4 @@
-const Ship = require('./src/ship');
+const Ship = require('../src/ship');
 
 let ship = null;
 
