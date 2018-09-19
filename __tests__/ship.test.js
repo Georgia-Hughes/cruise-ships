@@ -1,28 +1,29 @@
 const Ship = require('../src/ship');
+const Port = require('../src/port');
 
-let ship = null;
-
-beforeEach(() => {
-  ship = new Ship('My Big Boat');
-});
-
-describe('Name Ship', () => {
-  it('gives the ship a name', () => {
-    expect(ship.name).toEqual('My Big Boat');
+describe('Ship', () => {
+  it('can be created', () => {
+    expect(new Ship()).toBeInstanceOf(Object);
   });
-});
 
-describe('Ship has starting point', () => {
-  it('gives the ship a starting point', () => {
-    expect(ship.startingPort).toEqual('Liverpool');
+  it('has a starting port', () => {
+    const port = new Port('Liverpool');
+    const ship = new Ship(port);
+    expect(ship.currentPort).toBe(port);
   });
-});
 
-describe('Ship should be able to set sail from a port', () => {
-  it('can leave the current port', () => {
-    // ship.startingPort = 'Manchester'; Leaving this comment to remind me this will fail!
-    ship.startingPort = 'Liverpool';
-    ship.startPort();
-    expect(ship.startingPort).toBeTruthy();
+  it('can leave the port', () => {
+    const port = new Port('Liverpool');
+    const ship = new Ship(port);
+    ship.canSail();
+    expect(ship.currentPort).toBeFalsy();
+  });
+
+  it('can dock in another port', () => {
+    const liverpool = new Port('Liverpool');
+    const ship = new Ship(liverpool);
+    const manchester = new Port('Manchester');
+    ship.dock(manchester);
+    expect(ship.currentPort).toBe(manchester);
   });
 });

@@ -1,23 +1,15 @@
-function Ship(name) {
-  this.name = name;
-  this.startingPort = 'Liverpool';
+function Ship(currentPort) {
+  this.currentPort = currentPort;
 }
 
 Ship.prototype = {
-  get canSail() {
-    if (this.startingPort === 'Liverpool') {
-      return true;
-    }
-    return false;
+  canSail() {
+    this.currentPort = null;
   },
-};
 
-Ship.prototype.startPort = function startPort() {
-  if (!this.canSail) {
-    throw new Error('Your ship cannot leave port!');
-  } else {
-    this.startingPort = 'Liverpool';
-  }
+  dock(port) {
+    this.currentPort = port;
+  },
 };
 
 module.exports = Ship;
