@@ -1,29 +1,36 @@
-const Ship = require('../src/ship');
-const Port = require('../src/port');
+const Ship = require('../src/Ship.js');
+const Port = require('../src/Port.js');
+const Itinerary = require('../src/Itinerary.js');
+
+let ship;
+let itinerary;
+let liverpool;
+let manchester;
+
+beforeEach(() => {
+  liverpool = new Port('Liverpool');
+  manchester = new Port('Manchester');
+  itinerary = new Itinerary([liverpool, manchester]);
+  ship = new Ship(itinerary);
+});
 
 describe('Ship', () => {
   it('can be created', () => {
-    expect(new Ship()).toBeInstanceOf(Object);
+    expect(ship).toBeInstanceOf(Object);
   });
 
   it('has a starting port', () => {
-    const port = new Port('Liverpool');
-    const ship = new Ship(port);
-    expect(ship.currentPort).toBe(port);
+    expect(ship.currentPort).toBe(liverpool);
   });
 
-  it('can leave the port', () => {
-    const port = new Port('Liverpool');
-    const ship = new Ship(port);
-    ship.canSail();
+  it('can set sail', () => {
+    ship.setSail();
     expect(ship.currentPort).toBeFalsy();
   });
 
-  it('can dock in another port', () => {
-    const liverpool = new Port('Liverpool');
-    const ship = new Ship(liverpool);
-    const manchester = new Port('Manchester');
-    ship.dock(manchester);
+  it('can dock at a new port', () => {
+    ship.setSail();
+    ship.dock();
     expect(ship.currentPort).toBe(manchester);
   });
 });

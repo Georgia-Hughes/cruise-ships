@@ -5,7 +5,7 @@ describe('Itinery', () => {
   it('can be created', () => {
     expect(new Itinerary()).toBeInstanceOf(Object);
   });
-  
+ 
   it('checks if itinerary has ports', () => {
     const liverpool = new Port('Liverpool');
     const manchester = new Port('Manchester');
