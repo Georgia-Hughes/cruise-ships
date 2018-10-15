@@ -31,7 +31,7 @@
         newPortElement.dataset.portIndex = index;
         portsElement.appendChild(newPortElement);
         const portsElementWidth = parseInt(portsElement.style.width, 10);
-        portsElement.style.width = `${portsElementWidth + 256}px`;
+        portsElement.style.width = `${portsElementWidth + 230}px`;
       });
     },
     renderShip() {
@@ -53,13 +53,14 @@
         return this.renderMessage('End of the line!');
       }
 
+      const shipElement = document.querySelector('#ship');
       this.renderMessage(`Now departing ${ship.currentPort.name}`);
       ship.setSail();
-      const shipElement = document.querySelector('#ship');
       ship.dock();
       const sailInterval = setInterval(() => {
         const shipLeft = parseInt(shipElement.style.left, 10);
         if (shipLeft === (nextPortElement.offsetLeft - 32)) {
+          this.renderMessage(`Now arriving at ${ship.currentPort.name}.`);
           ship.dock();
           clearInterval(sailInterval);
         }
