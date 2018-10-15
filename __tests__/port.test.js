@@ -1,11 +1,11 @@
 const Port = require('../src/port');
 
 let port;
-let ships;
+let boat;
 
 beforeEach(() => {
-  ships = ['My Big Boat'];
-  port = new Port('Liverpool', ships);
+  port = new Port('Liverpool');
+  boat = jest.fn();
 });
 
 describe('Port', () => {
@@ -20,14 +20,15 @@ describe('Port', () => {
 
 describe('addShip', () => {
   it('returns the added ships', () => {
-    port.addShip('Even Bigger Boat');
-    expect(port.ships).toEqual(['My Big Boat', 'Even Bigger Boat']);
+    port.addShip(boat);
+    expect(port.ships).toContain(boat);
   });
 });
 
 describe('removeShip', () => {
   it('removes a ship', () => {
-    port.removeShip('Even Bigger Boat');
-    expect(port.ships).toEqual(['My Big Boat']);
+    port.addShip(boat);
+    port.removeShip(boat);
+    expect(port.ships).toEqual([]);
   });
 });
